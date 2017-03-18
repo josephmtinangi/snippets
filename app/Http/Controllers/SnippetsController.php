@@ -66,7 +66,7 @@ class SnippetsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param Snippet $snippet
      * @return \Illuminate\Http\Response
      */
     public function show(Snippet $snippet)
@@ -77,24 +77,41 @@ class SnippetsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int $id
+     * @param Snippet $snippet
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Snippet $snippet)
     {
-        //
+        if ($snippet->user_id != Auth::user()->id) {
+            return redirect()->home();
+        }
+
+        return view('snippets.edit', compact('snippet'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  int $id
+     * @param $snippet
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Snippet $snippet)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required',
+            'body' => 'required'
+        ]);
+
+        $snippet->title = request('title');
+        $snippet->body = request('body');
+        $snippet->forked_id = request('forked_id', null);
+
+        $user = Auth::user();
+
+        $user->snippets()->save($snippet);
+
+        return redirect()->home();
     }
 
     /**

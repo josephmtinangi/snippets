@@ -11,8 +11,11 @@
         </div>
 
         <pre>
-                    <code>{{ $snippet->body }}</code>
-                </pre>
+            <code>{{ $snippet->body }}</code>
+        </pre>
+
+
+        @include('snippets._edit_link')
 
     </article>
 @endforeach

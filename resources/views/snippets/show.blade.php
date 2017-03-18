@@ -1,35 +1,37 @@
 @component('layouts.app')
-    @slot('title')
+@slot('title')
+{{ $snippet->title }}
+@endslot
+
+<div class="is-flex">
+    <h1 class="title flex">
         {{ $snippet->title }}
-    @endslot
+    </h1>
+    <a href="/snippets/{{ $snippet->id }}/fork">Fork Me</a>
+</div>
 
-    <div class="is-flex">
-        <h1 class="title flex">
-            {{ $snippet->title }}
-        </h1>
-        <a href="/snippets/{{ $snippet->id }}/fork">Fork Me</a>
-    </div>
-
-  <pre>
+<pre>
     <code>{{ $snippet->body }}</code>
   </pre>
 
-  <p>
+@include('snippets._edit_link')
+
+<p>
     <a href="/">Back</a>
-  </p>
+</p>
 
-  <hr>
+<hr>
 
-  @if($snippet->isAFork())
+@if($snippet->isAFork())
     <h3 class="title is-3">
-        Forked  From
+        Forked From
         <a href="/snippets/{{ $snippet->originalSnippet->id }}">
             {{ $snippet->originalSnippet->title }}
         </a>
     </h3>
-  @endif
+@endif
 
-  @if($snippet->forks->count())
+@if($snippet->forks->count())
     <hr>
 
     <h3 class="title is-3">Forks</h3>
@@ -44,5 +46,5 @@
         @endforeach
     </ul>
 
-  @endif
+@endif
 @endcomponent
