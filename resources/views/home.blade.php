@@ -1,17 +1,9 @@
-@extends('layouts.app')
+@component('layouts.app')
 
-@section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
+@slot('title')
+Home
+@endslot
 
-                <div class="panel-body">
-                    You are logged in!
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-@endsection
+<h1 class="title">Your Snippets</h1>
+
+@endcomponent

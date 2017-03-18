@@ -33,7 +33,7 @@
             </h2>
 
             <p>
-                <a href="/snippets/create" class="button is-primary">Create Snippet</a>
+                <a href="/snippets/create" class="button is-primary">Create New</a>
             </p>
 
         </div>
