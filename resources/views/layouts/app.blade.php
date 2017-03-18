@@ -23,18 +23,41 @@
 
 <section class="hero is-medium is-primary is-bold">
     <div class="hero-body">
-        <div class="container">
-            <h1 class="title">
-                <a href="/">Snippets</a>
-            </h1>
+        <div class="container is-flex">
 
-            <h2 class="subtitle">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            </h2>
+            <div class="flex">
+                <h1 class="title">
+                    <a href="/">Snippets</a>
+                </h1>
 
-            <p>
-                <a href="/snippets/create" class="button is-primary">Create New</a>
-            </p>
+                <h2 class="subtitle">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                </h2>
+
+                <p>
+                    <a href="/snippets/create" class="button is-primary">Create New</a>
+                </p>
+            </div>
+
+            @if(Auth::guest())
+                <a href="/login">Sign In</a>&nbsp;|&nbsp;<a href="/register">Sign Up</a>
+            @else
+                <h2 class="title is-2">{{ Auth::user()->name }}</h2> &nbsp;
+
+
+
+                <a href="{{ route('logout') }}"
+                   onclick="event.preventDefault();
+                   document.getElementById('logout-form').submit();">
+                    Logout
+                </a>
+
+                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                      style="display: none;">
+                    {{ csrf_field() }}
+                </form>
+
+            @endif
 
         </div>
     </div>
