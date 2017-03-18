@@ -17,7 +17,18 @@
   <p>
     <a href="/">Back</a>
   </p>
-  
+
+  <hr>
+
+  @if($snippet->isAFork())
+    <h3 class="title is-3">
+        Forked  From
+        <a href="/snippets/{{ $snippet->originalSnippet->id }}">
+            {{ $snippet->originalSnippet->title }}
+        </a>
+    </h3>
+  @endif
+
   @if($snippet->forks->count())
     <hr>
 

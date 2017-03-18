@@ -12,4 +12,14 @@ class Snippet extends Model
     {
         return $this->hasMany(Snippet::class, 'forked_id');
     }
+
+    public function originalSnippet()
+    {
+        return $this->belongsTo(Snippet::class, 'forked_id');
+    }
+
+    public function isAFork()
+    {
+        return !! $this->originalSnippet;
+    }
 }
