@@ -35,7 +35,14 @@ class SnippetsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validation
+
+        Snippet::create([
+            'title' => request('title'),
+            'body' => request('body')
+        ]);
+
+        return redirect()->home();
     }
 
     /**

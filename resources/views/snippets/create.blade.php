@@ -9,7 +9,7 @@
 
         <div class="control">
             <label for="title" class="label">Title:</label>
-            <input type="text" id="title" name="title" class="input">
+            <input type="text" id="title" name="title" class="input" autofocus>
         </div>
 
         <div class="control">
