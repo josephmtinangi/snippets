@@ -2,5 +2,5 @@
     @slot('title')
         Snippets
     @endslot
-<h1>Index</h1>
+<h1 class="title">List of Snippets</h1>
 @endcomponent
