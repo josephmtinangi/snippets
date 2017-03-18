@@ -20,6 +20,11 @@ class Snippet extends Model
 
     public function isAFork()
     {
-        return !! $this->originalSnippet;
+        return !!$this->originalSnippet;
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

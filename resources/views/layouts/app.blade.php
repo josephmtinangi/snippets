@@ -42,7 +42,7 @@
             @if(Auth::guest())
                 <a href="/login">Sign In</a>&nbsp;|&nbsp;<a href="/register">Sign Up</a>
             @else
-                <h2 class="title is-2">{{ Auth::user()->name }}</h2> &nbsp;
+                <h2 class="title is-2"><a href="/home">{{ Auth::user()->name }}</a></h2> &nbsp;
 
 
 

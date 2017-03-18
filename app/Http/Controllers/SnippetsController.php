@@ -4,9 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Snippet;
+use Illuminate\Support\Facades\Auth;
 
 class SnippetsController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     */
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['index', 'show']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -31,22 +41,24 @@ class SnippetsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        // Validation
         $this->validate($request, [
             'title' => 'required',
             'body' => 'required'
         ]);
 
-        Snippet::create([
-            'title' => request('title'),
-            'body' => request('body'),
-            'forked_id' => request('forked_id', null)
-        ]);
+        $snippet = new Snippet();
+        $snippet->title = request('title');
+        $snippet->body = request('body');
+        $snippet->forked_id = request('forked_id', null);
+
+        $user = Auth::user();
+
+        $user->snippets()->save($snippet);
 
         return redirect()->home();
     }
@@ -54,7 +66,7 @@ class SnippetsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show(Snippet $snippet)
@@ -65,7 +77,7 @@ class SnippetsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -76,8 +88,8 @@ class SnippetsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -88,7 +100,7 @@ class SnippetsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
