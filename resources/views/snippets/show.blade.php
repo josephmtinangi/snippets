@@ -9,4 +9,8 @@
   <pre>
     <code>{{ $snippet->body }}</code>
   </pre>
+
+  <p>
+    <a href="/">Back</a>
+  </p>
 @endcomponent
