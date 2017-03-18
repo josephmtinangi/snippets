@@ -1,6 +1,12 @@
 @component('layout')
     @slot('title')
-        Snippets
+        {{ $snippet->title }}
     @endslot
-<h1>Index</h1>
+  <h1 class="title">
+    {{ $snippet->title }}
+  </h1>
+
+  <pre>
+    <code>{{ $snippet->body }}</code>
+  </pre>
 @endcomponent
