@@ -17,4 +17,21 @@
   <p>
     <a href="/">Back</a>
   </p>
+  
+  @if($snippet->forks->count())
+    <hr>
+
+    <h3 class="title is-3">Forks</h3>
+
+    <ul>
+        @foreach($snippet->forks as $fork)
+            <li>
+                <a href="/snippets/{{ $snippet->id }}">
+                    {{ $snippet->title }}
+                </a>
+            </li>
+        @endforeach
+    </ul>
+
+  @endif
 @endcomponent

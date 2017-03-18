@@ -37,10 +37,15 @@ class SnippetsController extends Controller
     public function store(Request $request)
     {
         // Validation
+        $this->validate($request, [
+            'title' => 'required',
+            'body' => 'required'
+        ]);
 
         Snippet::create([
             'title' => request('title'),
-            'body' => request('body')
+            'body' => request('body'),
+            'forked_id' => request('forked_id', null)
         ]);
 
         return redirect()->home();

@@ -7,6 +7,10 @@
     <form action="/snippets" method="POST">
         {{ csrf_field() }}
 
+        @if($snippet->id)
+            <input type="hidden" name="forked_id" value="{{ $snippet->id }}">
+        @endif
+
         <div class="control">
             <label for="title" class="label">Title:</label>
             <input type="text" id="title" name="title" value="{{ $snippet->title }}" class="input" autofocus>
