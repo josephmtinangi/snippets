@@ -2,9 +2,13 @@
     @slot('title')
         {{ $snippet->title }}
     @endslot
-  <h1 class="title">
-    {{ $snippet->title }}
-  </h1>
+
+    <div class="is-flex">
+        <h1 class="title flex">
+            {{ $snippet->title }}
+        </h1>
+        <a href="/snippets/{{ $snippet->id }}/fork">Fork Me</a>
+    </div>
 
   <pre>
     <code>{{ $snippet->body }}</code>

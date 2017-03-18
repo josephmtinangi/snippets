@@ -2,19 +2,19 @@
     @slot('title')
         Snippets
     @endslot
-    <h1 class="title">Create a snippet</h1>
+    <h1 class="title">New Snippet</h1>
 
     <form action="/snippets" method="POST">
         {{ csrf_field() }}
 
         <div class="control">
             <label for="title" class="label">Title:</label>
-            <input type="text" id="title" name="title" class="input" autofocus>
+            <input type="text" id="title" name="title" value="{{ $snippet->title }}" class="input" autofocus>
         </div>
 
         <div class="control">
             <label for="body" class="label">Body:</label>
-            <textarea name="body" id="body" class="textarea"></textarea>
+            <textarea name="body" id="body" class="textarea">{{ $snippet->body }}</textarea>
         </div>
 
         <div class="control">

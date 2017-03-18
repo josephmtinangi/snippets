@@ -23,9 +23,9 @@ class SnippetsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Snippet $snippet)
     {
-        return view('snippets.create');
+        return view('snippets.create', compact('snippet'));
     }
 
     /**
