@@ -14,7 +14,8 @@ class SnippetsController extends Controller
      */
     public function index()
     {
-        return view('snippets.index');
+        $snippets = Snippet::latest()->get();
+        return view('snippets.index', compact('snippets'));
     }
 
     /**
