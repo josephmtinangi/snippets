@@ -1,4 +1,4 @@
-@component('layout')
+@component('layouts.app')
     @slot('title')
         Snippets
     @endslot
