@@ -66,7 +66,14 @@
 
 <section class="section">
     <div class="container">
-        {{ $slot }}
+        <div class="columns">
+            <div class="column is-10">
+                {{ $slot }}
+            </div>
+            <div class="column is-2">
+                Top
+            </div>
+        </div>
     </div>
 </section>
 
